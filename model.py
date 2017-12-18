@@ -17,9 +17,6 @@ class Model(object):
 	def fit(self,x,y):
 		return self.clf.fit(x,y)
 
-	def score(x):
-		return self.clf.score(x)
-
 	def gridsearch(self,X,y):
 		grid = GridSearchCV(self.clf, self.params, cv=self.cv)
 		gfit = grid.fit(X,y)
