@@ -28,6 +28,9 @@ def treatData(d):
 	d.loc[d.Age.isnull()&(d.Title=='Miss'),'Age']=22
 	d.loc[d.Age.isnull()&(d.Title=='Rare'),'Age']=46
 
+
+	d['Title'].replace(['Master','Miss','Mrs','Mr','Rare'],[0,1,2,3,4], inplace=True)
+
 	# split ages into bins
 	d['AgeBin'] = pd.cut(d['Age'],[0,16,32,48,65,1000],labels=[0,1,2,3,4])
 
@@ -43,3 +46,16 @@ def treatData(d):
 
 	# drop unused features
 	d.drop(['Age','Name','Cabin','Ticket', 'SibSp'],axis=1,inplace=True)
+
+def loadTrain():
+	tr = pd.read_csv("data/train.csv")
+	tr_y = tr['Survived'].ravel()
+	tr.drop(['PassengerId','Survived'],axis=1,inplace=True)
+
+	return tr, tr_y
+
+def loadTest():
+	te = pd.read_csv("data/test.csv")
+	te_id = te['PassengerId']
+	te.drop('PassengerId',axis=1,inplace=True)
+	return te, te_id
