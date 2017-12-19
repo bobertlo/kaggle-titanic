@@ -9,6 +9,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import VotingClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 
 x_train, y_train = data.loadTrain()
@@ -21,6 +22,7 @@ models.append(("ada",AdaBoostClassifier))
 models.append(("gb",GradientBoostingClassifier))
 models.append(("et",ExtraTreesClassifier))
 models.append(("svc",SVC))
+models.append(("knn",KNeighborsClassifier))
 
 preds = []
 for l,mi in models:
@@ -28,6 +30,7 @@ for l,mi in models:
 	print("Training BB " + l + "...")
 	bb = m.bb(x_train, y_train, x_test)
 	preds.append(bb)
+	print(m.clf.score(x_train,y_train))
 	sub = pd.DataFrame({'PassengerId': id_test, 'Survived': bb})
 	sub.to_csv("output/bb-" + l + ".csv", index=False)
 
@@ -36,6 +39,7 @@ models = [(label,clf()) for (label,clf) in models]
 
 vc = VotingClassifier(models)
 vc.fit(x_train, y_train)
+print(vc.score(x_train,y_train))
 p = vc.predict(x_test)
 sub = pd.DataFrame({'PassengerId': id_test, 'Survived': p})
 sub.to_csv("output/bb-voting.csv", index=False)

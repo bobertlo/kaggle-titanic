@@ -18,7 +18,7 @@ class Model(object):
 		return self.clf.fit(x,y)
 
 	def gridsearch(self,X,y):
-		grid = GridSearchCV(self.clf, self.params, cv=self.cv)
+		grid = GridSearchCV(self.clf, self.grid_params, cv=self.cv)
 		gfit = grid.fit(X,y)
 		model = gfit.best_estimator_
 		score = gfit.best_score_

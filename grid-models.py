@@ -9,6 +9,8 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import VotingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
 
@@ -27,9 +29,27 @@ rf_grid_params = {
  	"min_samples_leaf": [1, 2, 4, 6, 8, 10]
 }
 
+knn_params = { }
+
+knn_grid_params = {
+	"n_neighbors": [5,10,15,20,25,30,35,40,45,50,60],
+	"metric": ['euclidean','manhattan'],
+	"weights": ['uniform','distance']
+}
+
+ada_params = { }
+
+ada_grid_params = {
+	"n_estimators": [1, 2, 5, 10, 20, 30, 40, 50, 60, 70],
+	"learning_rate": [ 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 1.5],
+	"algorithm": ['SAMME', 'SAMME.R']
+}
+
 
 models = []
 #models.append(("logreg",LogisticRegressionCV))
+models.append(("ada",AdaBoostClassifier,ada_params,ada_grid_params))
+models.append(("knn",KNeighborsClassifier,knn_params,knn_grid_params))
 models.append(("rf",RandomForestClassifier,rf_params,rf_grid_params))
 #models.append(("ada",AdaBoostClassifier))
 #models.append(("gb",GradientBoostingClassifier))
