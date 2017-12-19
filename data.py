@@ -29,7 +29,19 @@ def treatData(d):
 	d.loc[d.Age.isnull()&(d.Title=='Rare'),'Age']=46
 
 
-	d['Title'].replace(['Master','Miss','Mrs','Mr','Rare'],[0,1,2,3,4], inplace=True)
+	#d['Title'].replace(['Master','Miss','Mrs','Mr','Rare'],[0,1,2,3,4], inplace=True)
+	
+	# one-hot encode title
+	d['TitleMr'] = 0
+	d.loc[d.Title == 'Mr','TitleMr'] = 1
+	d['TitleMrs'] = 0
+	d.loc[d.Title == 'Mrs','TitleMrs'] = 1
+	d['TitleMiss'] = 0
+	d.loc[d.Title == 'Miss','TitleMiss'] = 1
+	d['TitleMaster'] = 0
+	d.loc[d.Title == 'Master','TitleMaster'] = 1
+	d['TitleRare'] = 0
+	d.loc[d.Title == 'Rare','TitleRare'] = 1
 
 	# split ages into bins
 	d['AgeBin'] = pd.cut(d['Age'],[0,16,32,48,65,1000],labels=[0,1,2,3,4])
@@ -45,7 +57,7 @@ def treatData(d):
 	d['Fare'] = d['Fare'].map(lambda i: np.log(i) if i > 0 else 0)
 
 	# drop unused features
-	d.drop(['Age','Name','Cabin','Ticket', 'SibSp'],axis=1,inplace=True)
+	d.drop(['Age','Name','Cabin','Ticket', 'SibSp', 'Title'],axis=1,inplace=True)
 
 def loadTrain():
 	tr = pd.read_csv("data/train.csv")
