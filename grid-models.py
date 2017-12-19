@@ -48,7 +48,7 @@ ada_grid_params = {
 et_params = {}
 
 et_grid_params = {
-	"max_features": [1,3,10,30,'auto'],
+	"max_features": [1,3,10,'auto'],
 	"min_samples_split": [2,3,10],
 	"min_samples_leaf": [1,3,10],
 	"n_estimators": [1,3,10,20,30],
