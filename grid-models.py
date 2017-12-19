@@ -36,22 +36,25 @@ models.append(("rf",RandomForestClassifier,rf_params,rf_grid_params))
 #models.append(("et",ExtraTreesClassifier))
 #models.append(("svc",SVC))
 
-preds = []
+estimators = []
 for l,mi,pi,pgi in models:
 	m = mi(**pi)
 	print("Runing GridSearch on " + l + "...")
 	grid = GridSearchCV(estimator=m, param_grid=pgi, cv=CV, verbose=1, n_jobs=-1)
 	grid.fit(x_train, y_train)
 	print(grid.best_params_)
-	#preds.append(bb)
-	sub = pd.DataFrame({'PassengerId': id_test, 'Survived': bb})
-	sub.to_csv("output/bb-" + l + ".csv", index=False)
+	print(grid.best_score_)
+	e = grid.best_estimator_
+	estimators.append(("l",e))
+	p = grid.predict(x_test)
+	sub = pd.DataFrame({'PassengerId': id_test, 'Survived': p})
+	sub.to_csv("output/grid-" + l + ".csv", index=False)
 
 #print("Running VotingClassifier...")
 #models = [(label,clf()) for (label,clf) in models]
 
-vc = VotingClassifier(models)
+vc = VotingClassifier(estimators)
 vc.fit(x_train, y_train)
 p = vc.predict(x_test)
 sub = pd.DataFrame({'PassengerId': id_test, 'Survived': p})
-sub.to_csv("output/bb-voting.csv", index=False)
+sub.to_csv("output/grid-voting.csv", index=False)
