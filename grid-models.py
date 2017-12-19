@@ -34,7 +34,7 @@ knn_params = { }
 knn_grid_params = {
 	"n_neighbors": [5,10,15,20,25,30,35,40,45,50,60],
 	"metric": ['euclidean','manhattan'],
-	"weights": ['uniform','distance']
+	"weights": ['uniform','distance'],
 }
 
 ada_params = { }
@@ -42,12 +42,23 @@ ada_params = { }
 ada_grid_params = {
 	"n_estimators": [1, 2, 5, 10, 20, 30, 40, 50, 60, 70],
 	"learning_rate": [ 0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 1, 1.5],
-	"algorithm": ['SAMME', 'SAMME.R']
+	"algorithm": ['SAMME', 'SAMME.R'],
+}
+
+et_params = {}
+
+et_grid_params = {
+	"max_features": [1,3,10,30,'auto'],
+	"min_samples_split": [2,3,10],
+	"min_samples_leaf": [1,3,10],
+	"n_estimators": [1,3,10,20,30],
+	"criterion": ['gini','entropy'],
 }
 
 
 models = []
 #models.append(("logreg",LogisticRegressionCV))
+models.append(("et",ExtraTreesClassifier,et_params,et_grid_params))
 models.append(("ada",AdaBoostClassifier,ada_params,ada_grid_params))
 models.append(("knn",KNeighborsClassifier,knn_params,knn_grid_params))
 models.append(("rf",RandomForestClassifier,rf_params,rf_grid_params))
