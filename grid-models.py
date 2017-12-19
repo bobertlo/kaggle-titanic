@@ -55,9 +55,19 @@ et_grid_params = {
 	"criterion": ['gini','entropy'],
 }
 
+gb_params = { }
+
+gb_grid_params = {
+	"learning_rate": [0.01, 0.1, 0.3, 0.5],
+	"max_depth": [2,3,5,8],
+	"min_samples_leaf": [1, 3, 10, 30, 90],
+	"max_features": ['sqrt','log2',None],
+}
+
 
 models = []
 #models.append(("logreg",LogisticRegressionCV))
+models.append(("gb",GradientBoostingClassifier,gb_params,gb_grid_params))
 models.append(("et",ExtraTreesClassifier,et_params,et_grid_params))
 models.append(("ada",AdaBoostClassifier,ada_params,ada_grid_params))
 models.append(("knn",KNeighborsClassifier,knn_params,knn_grid_params))
