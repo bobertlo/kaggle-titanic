@@ -58,7 +58,7 @@ et_grid_params = {
 gb_params = { }
 
 gb_grid_params = {
-	"learning_rate": [0.001, 0.003, 0.01, 0.03 0.1, 0.3, 0.5],
+	"learning_rate": [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 0.5],
 	"max_depth": [2,3,4,5,6,8],
 	"min_samples_leaf": [1, 3, 7, 10, 15, 20, 30, 90],
 	"max_features": ['sqrt','log2',None],
@@ -66,7 +66,7 @@ gb_grid_params = {
 
 svc_params = { "probability": True }
 svc_grid_params = {
-	"gamma": [0.001, 0.001, 0,003, 0.01, 0.3, 0.1, 1],
+	"gamma": [0.001, 0.001, 0.003, 0.01, 0.3, 0.1, 1],
 	"C": [1, 10, 20, 25, 30, 35, 40, 50, 75, 100, 300, 1000],
 }
 
