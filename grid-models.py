@@ -101,7 +101,7 @@ for l,mi,pi,pgi in models:
 #print("Running VotingClassifier...")
 #models = [(label,clf()) for (label,clf) in models]
 
-vc = VotingClassifier(estimators, voting='hard')
+vc = VotingClassifier(estimators, voting='hard', weights=[1,1,1,1,1,3])
 vc.fit(x_train, y_train)
 print(vc.score(x_train,y_train))
 p = vc.predict(x_test)
