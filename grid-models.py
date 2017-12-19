@@ -75,6 +75,7 @@ for l,mi,pi,pgi in models:
 
 vc = VotingClassifier(estimators)
 vc.fit(x_train, y_train)
+print(vc.score(x_train,y_train))
 p = vc.predict(x_test)
 sub = pd.DataFrame({'PassengerId': id_test, 'Survived': p})
 sub.to_csv("output/grid-voting.csv", index=False)
