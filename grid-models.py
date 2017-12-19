@@ -65,7 +65,7 @@ for l,mi,pi,pgi in models:
 	print(grid.best_params_)
 	print(grid.best_score_)
 	e = grid.best_estimator_
-	estimators.append(("l",e))
+	estimators.append((l,e))
 	p = grid.predict(x_test)
 	sub = pd.DataFrame({'PassengerId': id_test, 'Survived': p})
 	sub.to_csv("output/grid-" + l + ".csv", index=False)
