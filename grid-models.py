@@ -64,9 +64,16 @@ gb_grid_params = {
 	"max_features": ['sqrt','log2',None],
 }
 
+svc_params = { "probability": True }
+svc_grid_params = {
+	"gamma": [0.001, 0.001, 0.01, 0.1, 1],
+	"C": [1, 30, 100, 300, 1000],
+}
+
 
 models = []
 #models.append(("logreg",LogisticRegressionCV))
+models.append(("svc",SVC,svc_params,svc_grid_params))
 models.append(("gb",GradientBoostingClassifier,gb_params,gb_grid_params))
 models.append(("et",ExtraTreesClassifier,et_params,et_grid_params))
 models.append(("ada",AdaBoostClassifier,ada_params,ada_grid_params))
