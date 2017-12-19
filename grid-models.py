@@ -24,15 +24,15 @@ rf_params = {
 }
 
 rf_grid_params = {
-	"n_estimators": [5, 7, 8, 9,10, 12, 15, 18,27,36,45,54,63],
- 	"max_depth": [1, 5, 10, 12, 14, 15, 16, 18, 20, 25, 30],
+	"n_estimators": [2,3,4,5,6, 7, 8, 9,10, 11, 12, 13, 14, 15, 18,27,36,45,54,63],
+ 	"max_depth": [1, 5, 10, 11, 12, 13, 14, 15, 16, 18, 20, 25, 30],
  	"min_samples_leaf": [1, 2, 3, 4, 6, 8, 10]
 }
 
 knn_params = { }
 
 knn_grid_params = {
-	"n_neighbors": [5,7,9,10,11,13,15,20,25,30,35,40,45,50,60],
+	"n_neighbors": [5,6,7,8,9,10,11,13,15,20,25,30,35,40,45,50,60],
 	"metric": ['euclidean','manhattan'],
 	"weights": ['uniform','distance'],
 }
@@ -40,8 +40,8 @@ knn_grid_params = {
 ada_params = { }
 
 ada_grid_params = {
-	"n_estimators": [1, 2, 5, 10, 20, 30, 35, 40, 45, 50, 60, 70],
-	"learning_rate": [ 0.001, 0.003, 0.01, 0.03, 0.1, 0.2, 0.3, 0.4, 0.7, 1, 1.5],
+	"n_estimators": [1, 2, 5, 10, 20, 30, 35, 40, 45, 47, 50, 52, 54, 60, 70],
+	"learning_rate": [ 0.001, 0.003, 0.01, 0.03, 0.1, 0.15, 0.2, 0.25 0.3, 0.4, 0.7, 1, 1.5],
 	"algorithm": ['SAMME', 'SAMME.R'],
 }
 
@@ -51,7 +51,7 @@ et_grid_params = {
 	"max_features": [1,2,3,4,5,10,'auto'],
 	"min_samples_split": [2,3,7,10,13],
 	"min_samples_leaf": [1,2,3,10],
-	"n_estimators": [1,2,3,4,5,7,10,20,30],
+	"n_estimators": [1,2,3,4,5,6,7,10,20,30],
 	"criterion": ['gini','entropy'],
 }
 
@@ -60,14 +60,14 @@ gb_params = { }
 gb_grid_params = {
 	"learning_rate": [0.001, 0.003, 0.01, 0.03, 0.1, 0.3, 0.5],
 	"max_depth": [2,3,4,5,6,8],
-	"min_samples_leaf": [1, 3, 7, 10, 15, 20, 30, 90],
+	"min_samples_leaf": [1, 3, 7, 10, 12, 15, 17, 20, 30, 90],
 	"max_features": ['sqrt','log2',None],
 }
 
 svc_params = { "probability": True }
 svc_grid_params = {
-	"gamma": [0.001, 0.001, 0.003, 0.01, 0.3, 0.1, 1],
-	"C": [1, 10, 20, 25, 30, 35, 40, 50, 75, 100, 300, 1000],
+	"gamma": [0.001, 0.001, 0.003, 0.007, 0.01, 0.02, 0.3, 0.1, 1],
+	"C": [1, 10, 20, 25, 30, 35, 40, 45, 50, 55, 60, 75, 100, 300, 1000],
 }
 
 
