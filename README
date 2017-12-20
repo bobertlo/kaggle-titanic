@@ -1,0 +1,17 @@
+Kaggle Titanic Competition
+
+This is my effort at solving the Kaggle Titanic competition. I am using 
+multiple Classifier Models, optimized with GridSearchCV, and then using
+voting between their outputs to generate the answer.
+
+NOTE:
+The use of a Makefile was to generate each grid search independently, only
+needing to regenerate them if the (engineered) dataset changes, or if the
+parameters are tuned for that model. However, I have just been using a more
+powerful computer to run the model, and did not finish the seperation. So,
+the makefile is not very useful.
+
+TODO:
+* try one-hot encoding embarkment
+* seperate GridSearch and voting to allow tuning of voting algorithm without
+  running GridSearch
